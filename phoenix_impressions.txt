@@ -1,0 +1,30 @@
+## Good
+
+### No inflector
+### Plug
+
+## Bad
+
+### PUT vs PATCH
+
+PUT and PATCH do not mean the same thing. It's more appropriate to not have PUT.
+
+### Migration DSL
+
+Migration DSLs are not worth the effort and are, in fact, worse than SQL.
+
+### `resource` routes
+
+`resource` route DSLs are not better than manually specifying routes.
+
+  compare:
+    resources "/posts", PostController, except: [:new, :edit]
+
+  to:
+    get "/posts", PostController, :index
+    post "/posts", PostController, :create
+    get "/posts/:id", PostController, :show
+    patch "/posts/:id", PostController, :update
+    delete "/posts/:id", PostController, :delete
+
+which is more obvious?
