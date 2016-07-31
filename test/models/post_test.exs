@@ -4,7 +4,7 @@ defmodule Shelve.PostTest do
   alias Shelve.Post
 
   @valid_attrs %{title: "some content", url: "some content"}
-  @invalid_attrs %{}
+  @invalid_attrs %{title: "", url: ""}
 
   test "changeset with valid attributes" do
     changeset = Post.changeset(%Post{}, @valid_attrs)

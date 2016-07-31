@@ -17,9 +17,10 @@ defmodule Shelve.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    resources "/posts", PostController
   end
 
-  scope "/api", Shelve.API do
+  scope "/api", Shelve.API, as: :api do
     pipe_through :api
 
     get "/posts", PostController, :index
