@@ -1,4 +1,4 @@
-defmodule Shelve.PostControllerTest do
+defmodule Shelve.API.PostControllerTest do
   use Shelve.ConnCase
 
   alias Shelve.Post

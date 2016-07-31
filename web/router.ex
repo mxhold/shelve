@@ -19,7 +19,7 @@ defmodule Shelve.Router do
     get "/", PageController, :index
   end
 
-  scope "/api", Shelve do
+  scope "/api", Shelve.API do
     pipe_through :api
 
     get "/posts", PostController, :index

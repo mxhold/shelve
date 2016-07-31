@@ -1,4 +1,4 @@
-defmodule Shelve.PostController do
+defmodule Shelve.API.PostController do
   use Shelve.Web, :controller
 
   alias Shelve.Post
