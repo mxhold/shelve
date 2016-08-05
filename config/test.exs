@@ -16,4 +16,5 @@ config :shelve, Shelve.Repo,
   password: "postgres",
   database: "shelve_test",
   hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
+  pool: Ecto.Adapters.SQL.Sandbox,
+  ownership_timeout: 120_000
