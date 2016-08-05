@@ -2,8 +2,6 @@ defmodule Shelve.PostControllerTest do
   use Shelve.ConnCase
 
   alias Shelve.Post
-  @valid_attrs %{title: "some content", url: "some content"}
-  @invalid_attrs %{title: "", url: ""}
 
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, post_path(conn, :index)
@@ -16,18 +14,18 @@ defmodule Shelve.PostControllerTest do
   end
 
   test "creates resource and redirects when data is valid", %{conn: conn} do
-    conn = post conn, post_path(conn, :create), post: @valid_attrs
+    conn = post conn, post_path(conn, :create), post: Post.valid_attrs
     assert redirected_to(conn) == post_path(conn, :index)
-    assert Repo.get_by(Post, @valid_attrs)
+    assert Repo.get_by(Post, Post.valid_attrs)
   end
 
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
-    conn = post conn, post_path(conn, :create), post: @invalid_attrs
+    conn = post conn, post_path(conn, :create), post: Post.invalid_attrs
     assert html_response(conn, 200) =~ "New post"
   end
 
   test "shows chosen resource", %{conn: conn} do
-    post = Repo.insert! struct(Post, @valid_attrs)
+    post = Repo.insert! struct(Post, Post.valid_attrs)
     conn = get conn, post_path(conn, :show, post)
     assert html_response(conn, 200) =~ "Show post"
   end
@@ -39,27 +37,27 @@ defmodule Shelve.PostControllerTest do
   end
 
   test "renders form for editing chosen resource", %{conn: conn} do
-    post = Repo.insert! struct(Post, @valid_attrs)
+    post = Repo.insert! struct(Post, Post.valid_attrs)
     conn = get conn, post_path(conn, :edit, post)
     assert html_response(conn, 200) =~ "Edit post"
   end
 
   test "updates chosen resource and redirects when data is valid", %{conn: conn} do
-    post = Repo.insert! struct(Post, @valid_attrs)
+    post = Repo.insert! struct(Post, Post.valid_attrs)
     conn = get conn, post_path(conn, :edit, post)
-    conn = put conn, post_path(conn, :update, post), post: @valid_attrs
+    conn = put conn, post_path(conn, :update, post), post: Post.valid_attrs
     assert redirected_to(conn) == post_path(conn, :show, post)
-    assert Repo.get_by(Post, @valid_attrs)
+    assert Repo.get_by(Post, Post.valid_attrs)
   end
 
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
-    post = Repo.insert! struct(Post, @valid_attrs)
-    conn = put conn, post_path(conn, :update, post), post: @invalid_attrs
+    post = Repo.insert! struct(Post, Post.valid_attrs)
+    conn = put conn, post_path(conn, :update, post), post: Post.invalid_attrs
     assert html_response(conn, 200) =~ "Edit post"
   end
 
   test "deletes chosen resource", %{conn: conn} do
-    post = Repo.insert! struct(Post, @valid_attrs)
+    post = Repo.insert! struct(Post, Post.valid_attrs)
     conn = delete conn, post_path(conn, :delete, post)
     assert redirected_to(conn) == post_path(conn, :index)
     refute Repo.get(Post, post.id)

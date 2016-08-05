@@ -18,4 +18,12 @@ defmodule Shelve.Post do
     |> validate_length(:url, max: 100_000)
     |> validate_length(:title, max: 1_000)
   end
+
+  def valid_attrs do
+    %{title: "mytitle", url: "http://example.com"}
+  end
+
+  def invalid_attrs do
+    %{title: "", url: ""}
+  end
 end
