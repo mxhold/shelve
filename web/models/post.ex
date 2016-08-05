@@ -4,6 +4,7 @@ defmodule Shelve.Post do
   schema "posts" do
     field :url, :string
     field :title, :string
+    has_many :tags, Shelve.Tag
 
     timestamps()
   end
